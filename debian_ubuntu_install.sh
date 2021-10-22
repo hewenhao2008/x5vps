@@ -100,7 +100,7 @@ apt -y install git
 if curl -s cip.cc|grep "中国";then
 git clone https://gitee.com/link4all_admin/x5vps.git
 else
-https://github.com/hewenhao2008/x5vps.git
+git clone https://github.com/hewenhao2008/x5vps.git
 fi
 
 cd x5vps
