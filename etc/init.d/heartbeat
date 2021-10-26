@@ -1,0 +1,36 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:        heartbeat
+# Required-Start:  $network $remote_fs $syslog
+# Required-Stop:   $network $remote_fs $syslog
+# Default-Start:   2 3 4 5
+# Default-Stop: 
+# Short-Description: Start heartbeat and springboot daemon
+### END INIT INFO
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+. /lib/lsb/init-functions
+
+DAEMON=/bin/loop_heartbeat.sh
+PIDFILE=/var/run/loop_heartbeat.sh
+
+test -x $DAEMON || exit 5
+case $1 in
+	start)
+		start-stop-daemon  --start --background --make-pidfile $PIDFILE  --quiet  --pidfile $PIDFILE --exec $DAEMON 
+		# nohup /usr/lib/jdk8/bin/java -jar /www/wwwroot/gl.mine.com.cn/eladmin-system-2.6.jar --server.port=8000 > /tmp/IWRDZ1JI88.log 2>&1 &
+  		;;
+	stop)
+		#start-stop-daemon  --stop --quiet --retry=TERM/30/KILL/5 --pidfile $PIDFILE --exec $DAEMON
+		killall  loop_heartbeat.sh
+  		;;
+	restart)
+		$0 stop && sleep 2 && $0 start
+  		;;
+	*)
+		echo "Usage: $0 {start|stop|restart}"
+		exit 2
+		;;
+esac
