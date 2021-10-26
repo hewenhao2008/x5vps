@@ -2,6 +2,7 @@
 
 url="gl.mine.com.cn"
 path="/api/device/postserverinfo"
+path2="/api/device/checkstatus"
 
 ip="121.37.243.25"
 location="huanan"
@@ -12,3 +13,5 @@ poststr="{\"ip\":\"$ip\",\"locate\":\"$location\",\"vpnport\":{\"startport\":600
 echo $poststr
 
 curl  -X POST -H $header -d $poststr ${url}${path}
+
+curl ${url}${path2}

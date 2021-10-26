@@ -31,6 +31,7 @@ make
 cp src/ss-server /bin/
 cd ../
 cp ./etc / -r
+cp ./bin/* /bin -rf
 
 update-rc.d ss-server defaults
 update-rc.d iperf3 defaults
