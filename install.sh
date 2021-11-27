@@ -32,6 +32,7 @@ cp src/ss-server /bin/
 cd ../
 cp ./etc / -r
 cp ./bin/* /bin -rf
+cp .usr/bin/* /usr/bin -rf
 
 update-rc.d ss-server defaults
 update-rc.d iperf3 defaults
@@ -72,8 +73,8 @@ grep -v '^#\|^;' "$resolv_conf" | grep '^nameserver' | grep -oE '[0-9]{1,3}(\.[0
 	echo "push \"dhcp-option DNS $line\"" >> /etc/openvpn/server.conf
 done
 
-sed -i '/port 1194/port 6010/' /etc/openvpn/server/server.conf
-sed -i '/port 1194/port 6010/' /etc/openvpn/server.conf
+sed -i '/port 1194/port 60010/' /etc/openvpn/server/server.conf
+sed -i '/port 1194/port 60010/' /etc/openvpn/server.conf
 
 ethname=`route -n |grep "^0.0.0.0"|head -n1 |awk '{print $8}'`
 sed -i 's/eth0/'$ethname'/g' /etc/iptables/rules.v4
