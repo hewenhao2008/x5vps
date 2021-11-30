@@ -1,10 +1,10 @@
 {
     "server": "0.0.0.0",
     "server_port": 4443,
-    "password": "hewenhao12345",
+    "password": "iyunlink123",
     "timeout": 300,
     "mptcp": true,
     "no_delay": true,
     "fast_open": true,
-    "method": "none"
+    "method": "aes-128-gcm"
 }
