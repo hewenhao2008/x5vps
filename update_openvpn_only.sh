@@ -42,9 +42,20 @@ sed -i 's/eth0/'$ethname'/g' /etc/iptables/rules.v6
 
 sed -i 's/4443/443/g' /etc/config.json
 
-sed -i '/port 1194/port 6010/' /etc/openvpn/server/server.conf
-sed -i '/port 1194/port 6010/' /etc/openvpn/server.conf
+sed -i '/port 1194/port 60010/' /etc/openvpn/server/server.conf
+sed -i '/port 1194/port 60010/' /etc/openvpn/server.conf
 
-echo "Install ok, please enable tcp 443 port(for ss),3389(for speedtest),60000-60010 for udp vpn"
+apt install libssl-dev -f
+git clone https://gitee.com/link4all_admin/chipvpn.git
+cd chipvpn
+make
+cp bin/chipvpn /usr/bin/tcpvpn
+cp server.json /etc/
+cd ../
+rm -rf chipvpn
+update-rc.d tcpvpn defaults
+rm -rf ../vps
+
+echo "Install ok, please enable tcp 443 port(for ss),3389(for speedtest),60000-60011 for udp vpn"
 echo "Please put 'reboot' to reboot the system!"
 # reboot
